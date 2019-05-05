@@ -1,42 +1,56 @@
-import { Link } from "gatsby"
-import PropTypes from "prop-types"
-import React from "react"
+import React from 'react'
+import { string } from 'prop-types'
+import { Link } from 'gatsby'
+import styled from 'styled-components'
 
-const Header = ({ siteTitle }) => (
-  <header
-    style={{
-      background: `rebeccapurple`,
-      marginBottom: `1.45rem`,
-    }}
-  >
-    <div
-      style={{
-        margin: `0 auto`,
-        maxWidth: 960,
-        padding: `1.45rem 1.0875rem`,
-      }}
-    >
-      <h1 style={{ margin: 0 }}>
-        <Link
-          to="/"
-          style={{
-            color: `white`,
-            textDecoration: `none`,
-          }}
-        >
-          {siteTitle}
-        </Link>
-      </h1>
+import logo from '../images/logo.svg'
+
+const Header = ({ siteTitle, className }) => (
+  <header className={className}>
+    <div className="inner-wrapper">
+      <Link to="/">
+        <img src={logo} alt={siteTitle} />
+      </Link>
+      <h3>
+        <Link to="/">{siteTitle}</Link>
+      </h3>
     </div>
   </header>
 )
 
 Header.propTypes = {
-  siteTitle: PropTypes.string,
+  siteTitle: string.isRequired,
 }
 
 Header.defaultProps = {
   siteTitle: ``,
 }
 
-export default Header
+export default styled(Header)`
+  background: #524763;
+  margin-bottom: 0;
+
+  .inner-wrapper {
+    margin: 0 auto;
+    max-width: 960px;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+  }
+
+  img {
+    width: 140px;
+    margin: 0 20px 0 0;
+  }
+
+  h3 {
+    margin: 0;
+    display: inline-block;
+
+    a {
+      color: white;
+      text-decoration: none;
+      vertical-align: text-top;
+    }
+  }
+`
